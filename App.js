@@ -5,6 +5,8 @@ import myColors from "./constants/colors";
 import Header from "./components/Header";
 import { useState } from "react";
 import NumberFormat from "react-number-format";
+import Ingredient from "./components/Ingredient";
+import Procedure from "./screens/Procedure";
 
 const volume = ["mL", "tsp", "tbsp", "tazas", "L"];
 const mass = ["g", "oz", "lb", "Kg"];
@@ -18,6 +20,8 @@ const bakingPowderVolumeInMl = 4.92892159;
 const chocoChipsVolumeInMl = 236.5882364;
 
 export default function App() {
+  const [currentScreen, setCurrentScreen] = useState(0);
+
   const [brownSugarVolume, setBrownSugarVolume] =
     useState(brownSugarVolumeInMl);
   const [brownSugarVolumeIndex, setBrownSugarVolumeIndex] = useState(0);
@@ -188,124 +192,103 @@ export default function App() {
     setChocoChipsVolume(newChocoChipsVolume);
   };
 
+  let content = (
+    <View style={styles.ingredients}>
+      <Text>Ingredientes:</Text>
+      <Text>
+        <ul>
+          <li>
+            <Ingredient description="1 huevo" />
+          </li>
+          <li>
+            <Ingredient
+              ingredientMetric={brownSugarVolume}
+              ingredientIndex={brownSugarVolumeIndex}
+              changeIngredientMetric={changeBrownSugarVolume}
+              measure={volume}
+              description="de azúcar morena o mascabado"
+            />
+          </li>
+
+          <li>
+            <Ingredient
+              ingredientMetric={standardSugarVolume}
+              ingredientIndex={standardSugarVolumeIndex}
+              changeIngredientMetric={changeStandardSugarVolume}
+              measure={volume}
+              description="de azúcar estándar"
+            />
+          </li>
+          <li>
+            <Ingredient
+              ingredientMetric={butterMass}
+              ingredientIndex={butterMassIndex}
+              changeIngredientMetric={changeButterMass}
+              measure={mass}
+              description="de mantequilla a temperatura ambiente"
+            />
+          </li>
+          <li>
+            <Ingredient
+              ingredientMetric={vanillaVolume}
+              ingredientIndex={vanillaVolumeIndex}
+              changeIngredientMetric={changeVanillaVolume}
+              measure={volume}
+              description="de esencia de vainilla"
+            />
+          </li>
+          <li>
+            <Ingredient
+              ingredientMetric={flourVolume}
+              ingredientIndex={flourVolumeIndex}
+              changeIngredientMetric={changeFlourVolume}
+              measure={volume}
+              description="de harina"
+            />
+          </li>
+          <li>
+            <Ingredient
+              ingredientMetric={bakingPowderVolume}
+              ingredientIndex={bakingPowderVolumeIndex}
+              changeIngredientMetric={changeBakingPowderVolume}
+              measure={volume}
+              description="de polvo para hornear"
+            />
+          </li>
+          <li>
+            <Ingredient
+              ingredientMetric={chocoChipsVolume}
+              ingredientIndex={chocoChipsVolumeIndex}
+              changeIngredientMetric={changeChocoChipsVolume}
+              measure={volume}
+              description="de chispas de chocolate o trozos
+              de chocolate"
+            />
+          </li>
+        </ul>
+      </Text>
+    </View>
+  );
+
+  let buttonSign = "Ir a procedimiento";
+
+  if (currentScreen === 1) {
+    content = <Procedure />;
+    buttonSign = "Regresar a ingredientes";
+  }
+
   return (
     <View style={styles.container}>
       <Header style={styles.screen} title={"Hello there!"} />
-      <View style={styles.ingredients}>
-        <Text>Ingredientes:</Text>
-        <Text>
-          <ul>
-            <li>1 huevo</li>
-            <li>
-              <NumberFormat
-                displayType="text"
-                value={brownSugarVolume}
-                type="text"
-                decimalScale={2}
-              />{" "}
-              {volume[brownSugarVolumeIndex]} de azúcar morena o mascabado
-            </li>
-            <Button
-              style={styles.button}
-              title="unidad"
-              color={myColors.secondary}
-              onPress={changeBrownSugarVolume}
-            />
-            <li>
-              <NumberFormat
-                displayType="text"
-                value={standardSugarVolume}
-                type="text"
-                decimalScale={2}
-              />{" "}
-              {volume[standardSugarVolumeIndex]} de azúcar estándar
-            </li>
-            <Button
-              style={styles.button}
-              title="unidad"
-              color={myColors.secondary}
-              onPress={changeStandardSugarVolume}
-            />
-            <li>
-              <NumberFormat
-                displayType="text"
-                value={butterMass}
-                type="text"
-                decimalScale={2}
-              />{" "}
-              {mass[butterMassIndex]} de mantequilla a temperatura ambiente
-            </li>
-            <Button
-              style={styles.button}
-              title="unidad"
-              color={myColors.secondary}
-              onPress={changeButterMass}
-            />
-            <li>
-              <NumberFormat
-                displayType="text"
-                value={vanillaVolume}
-                type="text"
-                decimalScale={2}
-              />{" "}
-              {volume[vanillaVolumeIndex]} de esencia de vainilla
-            </li>
-            <Button
-              style={styles.button}
-              title="unidad"
-              color={myColors.secondary}
-              onPress={changeVanillaVolume}
-            />
-            <li>
-              <NumberFormat
-                displayType="text"
-                value={flourVolume}
-                type="text"
-                decimalScale={2}
-              />{" "}
-              {volume[flourVolumeIndex]} de harina
-            </li>
-            <Button
-              style={styles.button}
-              title="unidad"
-              color={myColors.secondary}
-              onPress={changeFlourVolume}
-            />
-            <li>
-              <NumberFormat
-                displayType="text"
-                value={bakingPowderVolume}
-                type="text"
-                decimalScale={2}
-              />{" "}
-              {volume[bakingPowderVolumeIndex]} de polvo para hornear
-            </li>
-            <Button
-              style={styles.button}
-              title="unidad"
-              color={myColors.secondary}
-              onPress={changeBakingPowderVolume}
-            />
-            <li>
-              <NumberFormat
-                displayType="text"
-                value={chocoChipsVolume}
-                type="text"
-                decimalScale={2}
-              />{" "}
-              {volume[chocoChipsVolumeIndex]} de chispas de chocolate o trozos
-              de chocolate
-            </li>
-            <Button
-              style={styles.button}
-              title="unidad"
-              color={myColors.secondary}
-              onPress={changeChocoChipsVolume}
-            />
-          </ul>
-        </Text>
-        <Text>Procedimiento</Text>
-      </View>
+      {content}
+      <Button
+        style={styles.button}
+        title={buttonSign}
+        color={myColors.primary}
+        onPress={() => {
+          setCurrentScreen((currentScreen + 1) % 2);
+        }}
+      />
     </View>
   );
 }
@@ -315,6 +298,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   ingredients: {
+    flex: 1,
     paddingLeft: 20,
   },
   button: {},
