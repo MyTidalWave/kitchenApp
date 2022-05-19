@@ -81,6 +81,7 @@ export default function App() {
       content = <StartScreen changeScreen={changeScreen} />;
       break;
     case 1:
+      console.log("Se entró a caso 1");
       content = (
         <GalletasConChispas
           volume={volume}
@@ -92,6 +93,7 @@ export default function App() {
       );
       break;
     case 2:
+      console.log("Se entró a 2");
       content = <ProcedureGalletas changeScreen={changeScreen} />;
       break;
     case 3:

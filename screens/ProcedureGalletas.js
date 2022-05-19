@@ -3,6 +3,7 @@ import { Button, StyleSheet, Text, View } from "react-native";
 import myColors from "../constants/colors";
 
 const ProcedureGalletas = ({ changeScreen }) => {
+  console.log("Se entro en procedimiento");
   return (
     <View>
       <Text>Procedimiento</Text>

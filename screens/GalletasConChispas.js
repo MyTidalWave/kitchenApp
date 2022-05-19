@@ -19,6 +19,7 @@ const GalletasConChispas = ({
   changeIngredientMass,
   changeScreen,
 }) => {
+  console.log("Estamos en galletas ingredientes");
   const [brownSugarVolume, setBrownSugarVolume] =
     useState(brownSugarVolumeInMl);
   const [brownSugarVolumeIndex, setBrownSugarVolumeIndex] = useState(0);
