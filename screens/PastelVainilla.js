@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import Ingredient from "../components/Ingredient";
 import { StyleSheet, Text, View, Button } from "react-native";
 import { useState } from "react";
@@ -113,8 +114,39 @@ const PastelVainilla = ({
     setFlourMass(newFlourMass);
   };
 
+  const [data, setData] = useState([]);
+
+  const pedirGifs = () => {
+    console.log("se pide gifs");
+    const fetchData = async () => {
+      const results = await axios("http://api.giphy.com/v1/gifs/search", {
+        params: {
+          api_key: "GZSWXTYbno6v2HVPLP8HccMvOiKxWIMB",
+          q: "vanilla cake",
+          limit: 1,
+          offset: 3,
+        },
+      });
+      setData(results.data.data);
+    };
+    fetchData();
+  };
+
+  const renderGif = () => {
+    return data.map((el) => {
+      return (
+        <div key={el.id} className="gif">
+          <img src={el.images.fixed_height.url} />
+        </div>
+      );
+    });
+  };
+
+  pedirGifs();
+
   return (
     <View style={styles.ingredients}>
+      <div>{renderGif()}</div>
       <Text>Ingredientes:</Text>
       <Text>
         <ul>
