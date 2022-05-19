@@ -1,8 +1,9 @@
 import React from "react";
 import Ingredient from "../components/Ingredient";
 import { StyleSheet, Text, View, Button } from "react-native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import myColors from "../constants/colors";
+//import axios from "axios";
 
 const brownSugarVolumeInMl = 59.1470591;
 const standardSugarVolumeInMl = 59.1470591;
@@ -134,6 +135,19 @@ const GalletasConChispas = ({
     );
     setChocoChipsVolume(newChocoChipsVolume);
   };
+
+  /*useEffect(() => {
+    const fetchData = async () => {
+      const results = await axios("http://api.giphy.com/v1/gifs/search", {
+        params: {
+          api_key: "GZSWXTYbno6v2HVPLP8HccMvOiKxWIMB",
+        },
+      });
+    }
+    console.log(results)
+    fetchData()
+  })*/
+
   return (
     <View style={styles.ingredients}>
       <Text>Ingredientes:</Text>

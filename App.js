@@ -75,13 +75,16 @@ export default function App() {
   };
 
   let content;
+  let titleHeader;
 
   switch (currentScreen) {
     case 0:
+      titleHeader = "Kitchen App";
       content = <StartScreen changeScreen={changeScreen} />;
       break;
     case 1:
       console.log("Se entró a caso 1");
+      titleHeader = "Galletas con chispas: Ingredientes";
       content = (
         <GalletasConChispas
           volume={volume}
@@ -94,9 +97,11 @@ export default function App() {
       break;
     case 2:
       console.log("Se entró a 2");
+      titleHeader = "Galletas con chispas: Procedimiento";
       content = <ProcedureGalletas changeScreen={changeScreen} />;
       break;
     case 3:
+      titleHeader = "Pastel de vainilla: Ingredientes";
       content = (
         <PastelVainilla
           volume={volume}
@@ -108,6 +113,7 @@ export default function App() {
       );
       break;
     case 4:
+      titleHeader = "Pastel de vainilla: Procedimiento";
       content = <ProcedurePastel changeScreen={changeScreen} />;
       break;
     default:
@@ -116,7 +122,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Header style={styles.screen} title={"Kitchen App"} />
+      <Header style={styles.screen} title={titleHeader} />
       {content}
     </View>
   );

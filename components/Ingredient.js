@@ -41,17 +41,22 @@ const Ingredient = ({
           type="text"
           decimalScale={2}
         />{" "}
-        {measure[ingredientIndex]}{" "}
+        {measure[ingredientIndex]}
       </Text>
     );
   }
 
+  let item = (
+    <View style={styles.ingredientLine}>
+      {confirmedMutableIngredient}
+      <Text>{description}</Text>
+    </View>
+  );
+
   return (
     <View style={styles.ingredient}>
-      <View style={styles.ingredientLine}>
-        {confirmedMutableIngredient}
-        <Text>{description}</Text>
-      </View>
+      <input type="checkbox" />
+      {item}
       <View style={styles.ingredientLine}>{confirmedButton}</View>
     </View>
   );

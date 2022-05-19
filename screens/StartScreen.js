@@ -21,7 +21,9 @@ const StartScreen = ({ changeScreen }) => {
           style={styles.button}
           title="Ir"
           color={myColors.secondary}
-          onPress={() => {}}
+          onPress={() => {
+            changeScreen(3);
+          }}
         />
       </View>
     </View>
